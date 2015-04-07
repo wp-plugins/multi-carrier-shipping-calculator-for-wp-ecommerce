@@ -1,9 +1,7 @@
 === Multi-Carrier Shipping Calculator for WP eCommerce ===
 
 Contributors: AuctionInc,45press
-Tags: shipping,shipping rates,shipping calculator,shipping estimate,estimator,carriers,USPS,FEDEX,UPS,DHL,wp 
-
-ecommerce,wp ecommerce shipping,wc shipping,advanced shipping, multiple origins
+Tags: shipping,shipping rates,shipping calculator,shipping estimate,estimator,carriers,USPS,FEDEX,UPS,DHL,wp-ecommerce,wp-ecommerce shipping,wpe shipping,advanced shipping,multiple origins,drop-shipping
 Requires at least: 3.0
 Tested up to: 4.1.1
 Stable tag: 1.0
@@ -39,7 +37,9 @@ Our ShippingCalc Plug-In for WP eCommerce instantly provides you access to our S
 * Offer pickup or delivery based on zip code range 
 * Packaging data pushed into your orders
 
-There are many available plug-ins to help merchants with shipping, but none with the capabilities we offer with our WP eCommerce ShippingCalc Plug-In, powered by AuctionInc's patented shipping rate engine. "Take the guess out of shipping", so the shipping prices quoted to your customers are accurate based on your unique business needs.ShippingCalc requires the WP eCommerce plugin as well as a subscription to AuctionInc.
+There are many available plug-ins to help merchants with shipping, but none with the capabilities we offer with our WP eCommerce ShippingCalc Plug-In, powered by AuctionInc's patented shipping rate engine. "Take the guess out of shipping", so the shipping prices quoted to your customers are accurate based on your unique business needs.
+
+ShippingCalc requires the WP eCommerce plugin as well as a subscription to AuctionInc.
 
 
 == Installation ==
