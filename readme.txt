@@ -47,8 +47,10 @@ ShippingCalc requires the WP eCommerce plugin as well as a subscription to Aucti
 Guide to Plug-In Module Installation
 
 1. Upload the folder 'auctioninc-shipcalc-for-wpe' to the '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Under Woocommerce -> Settings -> Shipping, find the AuctionInc section and fill out the required fields. You will need an AuctionInc WP eCommerce ShippingCalc Plug-In account.
+2. Activate the plugin through the 'Plugins' menu in WordPress.
+3. Register at AuctionInc for a WP eCommerce ShippingCalc Plug-In subscription.
+4. Under Settings-> Store-> Shipping -> External Shipping Calculators, find the AuctionInc ShippingCalc section and fill out the required fields. 
+5. You may add additional settings or override the default settings for a given product in the ShippingCalc section of your Product pages.
 
 
  == Frequently Asked Questions ==
