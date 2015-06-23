@@ -83,7 +83,9 @@ class auctioninc_shipcalc {
         $calc_methods = array(
             '' => __('-- Select -- ', 'wpec_auctioninc'),
             'C' => __('Carrier Rates', 'wpec_auctioninc'),
-            'F' => __('Fixed Fee', 'wpec_auctioninc')
+            'F' => __('Fixed Fee', 'wpec_auctioninc'),
+            'N' => __('Free', 'wpec_auctioninc'),
+            'CI' => __('Free Domestic', 'wpec_auctioninc')
         );
 
         $output .= '<tr>';
@@ -308,7 +310,7 @@ class auctioninc_shipcalc {
         global $current_user;
         $is_admin = (!empty($current_user->roles) && in_array('administrator', $current_user->roles)) ? true : false;
 
-        if (!empty($auctioninc_settings['id'])) {
+        if (!empty($wpsc_cart) && !empty($auctioninc_settings['id'])) {
             if (!empty($country) && !empty($zipcode)) {
                 $rates = array();
 
@@ -372,11 +374,11 @@ class auctioninc_shipcalc {
 
                     // Fixed Fee 1
                     $fixed_fee_1 = get_post_meta($product_id, 'auctioninc_fixed_fee_1', true);
-                    $fixed_fee_1 = !empty($fixed_fee_1) ? $fixed_fee_1 : $auctioninc_settings['fixed_fee_1'];
+                    $fixed_fee_1 = is_numeric($fixed_fee_1) ? $fixed_fee_1 : $auctioninc_settings['fixed_fee_1'];
 
                     // Fixed Fee 2
                     $fixed_fee_2 = get_post_meta($product_id, 'auctioninc_fixed_fee_2', true);
-                    $fixed_fee_2 = !empty($fixed_fee_2) ? $fixed_fee_2 : $auctioninc_settings['fixed_fee_2'];
+                    $fixed_fee_2 = is_numeric($fixed_fee_2) ? $fixed_fee_2 : $auctioninc_settings['fixed_fee_2'];
 
                     // Packaging Method
                     $pack_method = get_post_meta($product_id, 'auctioninc_pack_method', true);
@@ -417,7 +419,7 @@ class auctioninc_shipcalc {
                     $item["CalcMethod"] = $calc_method;
                     $item["quantity"] = $cartitem->quantity;
 
-                    if ($calc_method === 'C') {
+                    if ($calc_method === 'C' || $calc_method === 'CI') {
                         $item["packMethod"] = $pack_method;
                     }
 
@@ -428,9 +430,10 @@ class auctioninc_shipcalc {
                             if ($fixed_mode === 'code' && !empty($fixed_code)) {
                                 $item["FeeType"] = "C";
                                 $item["fixedFeeCode"] = $fixed_code;
-                            } elseif ($fixed_mode === 'fee' && !empty($fixed_fee_1) && !empty($fixed_fee_2)) {
+                            } elseif ($fixed_mode === 'fee' && is_numeric($fixed_fee_1) && (is_numeric($fixed_fee_2) || empty($fixed_fee_2)) ) {
                                 $item["FeeType"] = "F";
                                 $item["fixedAmt_1"] = $fixed_fee_1;
+                                if(empty($fixed_fee_2)) $fixed_fee_2 = 0;
                                 $item["fixedAmt_2"] = $fixed_fee_2;
                             }
                         }
@@ -448,7 +451,7 @@ class auctioninc_shipcalc {
                         $item["originCode"] = $origin_code;
                     }
 
-                    if ($calc_method === 'C') {
+                    if ($calc_method === 'C' || $calc_method === 'CI') {
                         // Weight
                         $wpec_weight_unit = $cartitem->meta[0]['weight_unit'];
                         $weight = $cartitem->meta[0]['weight'];
@@ -508,9 +511,9 @@ class auctioninc_shipcalc {
 
                 // Add Item Data from Item Array to API Object
                 foreach ($items AS $val) {
-                    if ($val["CalcMethod"] == "C") {
+                    if ($val["CalcMethod"] == "C" || $val["CalcMethod"] == "CI") {
 
-                        $shipAPI->addItemCalc($val["refCode"], $val["quantity"], $val["weight"], $val['weightUOM'], $val["length"], $val["width"], $val["height"], $val["dimUOM"], $val["value"], $val["packMethod"]);
+                        $shipAPI->addItemCalc($val["refCode"], $val["quantity"], $val["weight"], $val['weightUOM'], $val["length"], $val["width"], $val["height"], $val["dimUOM"], $val["value"], $val["packMethod"], 1, $val["CalcMethod"]);
                         if (isset($val["originCode"]))
                             $shipAPI->addItemOriginCode($val["originCode"]);
                         if (isset($val["odServices"]))

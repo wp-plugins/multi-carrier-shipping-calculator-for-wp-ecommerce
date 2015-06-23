@@ -3,7 +3,7 @@
  *
  * Copyright (c) Paid, Inc.  All rights reserved.
  *
- * $Id: ShipRateSocketPost.inc,v 1.14 2010/07/13 19:28:09 dsherman Exp $
+ * $Id: ShipRateSocketPost.inc,v 1.15 2014/11/05 23:10:57 dsherman Exp $
  *
  * This program is part of the Paid Shipping Rate API toolkit for PHP and is responsible for the actual communications
  * between the client application and the shipping rate engine web service.  It uses standard PHP file access functions 
@@ -126,7 +126,7 @@ class ShipRateSocketPost
          }
          fclose($fp);
          if ($this->debug) $this->_debug($result, $errmsg, $errnum);
-
+ 
          if ($timedOut) {
             $errorMsg = "Communications to rate engine timed out ({$this->timeout} seconds)";
             return false;
@@ -140,15 +140,15 @@ class ShipRateSocketPost
          $errorMsg = 'An unexpected error occured while communicating with Shipping Rate Web Service';
          return(false);
       }
-      
-      if (strstr($result, "\r\n\r\n")) {
+    
+      if (strstr($result, "\r\n\r\n")) {  
          // loop to handle "HTTP/1.1 100 Continue" headers
          $headers = '';
          while(true) {
             list($respHeaders, $respContent) = preg_split("/\r\n\r\n/",$result,2);
             
             // See if we got a 100 Continue header
-            if (ereg('^HTTP\/1\.[0-9][ ]{1,}100[ ]{1,}', $respHeaders)) {
+            if (preg_match('/^HTTP\/1\.[0-9][ ]{1,}100[ ]{1,}/', $respHeaders)) {
                // Hold onto the continue header
                $headers .= $respHeaders;
                $result = $respContent;
@@ -162,9 +162,9 @@ class ShipRateSocketPost
          }
       } elseif (stristr($result, 'content-length: 0')) {
          $respHeaders = $result;
-         $respContent = '';
+         $respContent = '';         
       } else {
-         $respContent = $result;
+         $respContent = $result;      
       }
       return(true);
    }

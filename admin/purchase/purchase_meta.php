@@ -18,7 +18,6 @@ function wpec_auctioninc_display_purchase_meta($log_id) {
         $i = 1;
         foreach ($shipping_meta['PackageDetail'] as $package) :
             $flat_rate_code = !empty($package['FlatRateCode']) ? $package['FlatRateCode'] : __('NONE', 'wpec_auctioninc');
-            $fixed_rate = !empty($package['FixedRate']) ? $package['FixedRate'] : __('NONE', 'wpec_auctioninc');
             ?>
             <strong><?php echo __('Package', 'wpec_auctioninc') . "# $i"; ?></strong><br>
             <?php
@@ -32,13 +31,13 @@ function wpec_auctioninc_display_purchase_meta($log_id) {
             echo __('Width', 'wpec_auctioninc') . ": {$package['Width']}<br>";
             echo __('Height', 'wpec_auctioninc') . ": {$package['Height']}<br>";
             echo __('Oversize Code', 'wpec_auctioninc') . ": {$package['OversizeCode']}<br>";
-            echo __('Carrier Rate', 'wpec_auctioninc') . ": {$package['CarrierRate']}<br>";
-            echo __('Fixed Rate', 'wpec_auctioninc') . ": $fixed_rate<br>";
-            echo __('Surcharge', 'wpec_auctioninc') . ": {$package['Surcharge']}<br>";
-            echo __('Fuel Surcharge', 'wpec_auctioninc') . ": {$package['FuelSurcharge']}<br>";
-            echo __('Insurance', 'wpec_auctioninc') . ": {$package['Insurance']}<br>";
-            echo __('Handling', 'wpec_auctioninc') . ": {$package['Handling']}<br>";
-            echo __('Total Rate', 'wpec_auctioninc') . ": {$package['ShipRate']}<br>";
+            echo __('Carrier Rate', 'wpec_auctioninc') . ": ".number_format($package['CarrierRate'],2)."<br>";
+            echo __('Fixed Rate', 'wpec_auctioninc') . ": ".number_format($package['FixedRate'],2)."<br>";
+            echo __('Surcharge', 'wpec_auctioninc') . ": ".number_format($package['Surcharge'],2)."<br>";
+            echo __('Fuel Surcharge', 'wpec_auctioninc') . ": ".number_format($package['FuelSurcharge'],2)."<br>";
+            echo __('Insurance', 'wpec_auctioninc') . ": ".number_format($package['Insurance'],2)."<br>";
+            echo __('Handling', 'wpec_auctioninc') . ": ".number_format($package['Handling'],2)."<br>";
+            echo __('Total Rate', 'wpec_auctioninc') . ": ".number_format($package['ShipRate'],2)."<br>";
 
             $j = 1;
             echo '<br>';
