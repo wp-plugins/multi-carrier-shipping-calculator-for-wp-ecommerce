@@ -2,7 +2,7 @@
 /*
   Plugin Name: AuctionInc ShippingCalc for WP E-Commerce
   Plugin URI:
-  Description: Obtain shipping rates dynamically via the AuctionInc Shipping API for your orders.
+  Description: Accurate multi-carrier real-time shipping rates from FedEx, USPS, UPS, and DHL. Multiple ship origins, many advanced features. Free two week trial. No carrier accounts required.
   Version: 1.0
   Author: AuctionInc
   Author URI: http://www.auctioninc.com/
@@ -82,7 +82,7 @@ function wpec_auctioninc_admin_notice() {
 
     if (empty($auctioninc_settings['id'])) {
         echo '<div class="error">
-             <p>' . __('An') . ' <a href="http://www.auctioninc.com/info/page/ShippingCalc_for_WP_eCommerce" target="_blank">' . __('AuctionInc', 'wpec_auctioninc') . '</a> ' . __('account is required to use this plugin.', 'wpec_auctioninc') . '</p>
+             <p>' . __('An') . ' <a href="http://www.auctioninc.com/info/page/ShippingCalc_for_WP_eCommerce" target="_blank">' . __('AuctionInc', 'wpec_auctioninc') . '</a> ' . __('account is required to use the ShippingCalc plugin.  Please enter your AuctionInc Account ID.', 'wpec_auctioninc') . '</p>
          </div>';
     }
 }

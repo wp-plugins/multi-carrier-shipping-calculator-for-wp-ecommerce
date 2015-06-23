@@ -41,10 +41,10 @@ function wpec_auctioninc_meta_box_callback($post) {
     $fixed_code = !empty($fixed_code) ? $fixed_code : $auctioninc_settings['fixed_code'];
 
     $fixed_fee_1 = get_post_meta($post->ID, 'auctioninc_fixed_fee_1', true);
-    $fixed_fee_1 = !empty($fixed_fee_1) ? $fixed_fee_1 : $auctioninc_settings['fixed_fee_1'];
+    $fixed_fee_1 = is_numeric($fixed_fee_1) ? $fixed_fee_1 : $auctioninc_settings['fixed_fee_1'];
 
-    $fixed_fee_2 = get_post_meta($post->ID, 'auctioninc_fixed_fee_1', true);
-    $fixed_fee_2 = !empty($fixed_fee_2) ? $fixed_fee_2 : $auctioninc_settings['fixed_fee_2'];
+    $fixed_fee_2 = get_post_meta($post->ID, 'auctioninc_fixed_fee_2', true);
+    $fixed_fee_2 = is_numeric($fixed_fee_2) ? $fixed_fee_2 : $auctioninc_settings['fixed_fee_2'];
 
     echo '<a href="http://www.auctioninc.com/info/page/auctioninc_shipping_settings" target="_blank">' . __('AuctionInc Help', 'wpec_auctioninc') . '</a>';
 
@@ -58,7 +58,8 @@ function wpec_auctioninc_meta_box_callback($post) {
         '' => __('-- Select -- ', 'wpec_auctioninc'),
         'C' => __('Carrier Rates', 'wpec_auctioninc'),
         'F' => __('Fixed Fee', 'wpec_auctioninc'),
-        'N' => __('Free', 'wpec_auctioninc')
+        'N' => __('Free', 'wpec_auctioninc'),
+        'CI' => __('Free Domestic', 'wpec_auctioninc')
     );
 
     echo '<tr>';
@@ -245,10 +246,10 @@ function wpec_auctioninc_meta_box_callback($post) {
     'DHL10AM' => __('DHL Express 10:30 A.M.', 'wpec_auctioninc'),
     'DHL12PM' => __('DHL Express 12 P.M.', 'wpec_auctioninc'),
     'DHLES' => __('DHL Domestic Economy Select', 'wpec_auctioninc'),
-    'DHLEXA' => __('DHL Domestic Express 9 AM', 'wpec_auctioninc'),
-    'DHLEXM' => __('DHL Domestic Express 10:30 AM', 'wpec_auctioninc'),
-    'DHLEXP' => __('DHL Domestic Express 12 PM', 'wpec_auctioninc'),
-    'DHLDE' => __('DHL Domestic Express (6 PM)', 'wpec_auctioninc'),
+    'DHLEXA' => __('DHL Domestic Express 9 A.M.', 'wpec_auctioninc'),
+    'DHLEXM' => __('DHL Domestic Express 10:30 A.M.', 'wpec_auctioninc'),
+    'DHLEXP' => __('DHL Domestic Express 12 P.M.', 'wpec_auctioninc'),
+    'DHLDE' => __('DHL Domestic Express 6 P.M.', 'wpec_auctioninc'),
     'FDX2D' => __('FedEx 2 Day', 'wpec_auctioninc'),
     'FDX2DAM' => __('FedEx 2 Day AM', 'wpec_auctioninc'),
     'FDXES' => __('FedEx Express Saver', 'wpec_auctioninc'),

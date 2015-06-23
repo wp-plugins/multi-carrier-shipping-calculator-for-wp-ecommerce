@@ -3,7 +3,7 @@
  *
  * Copyright (c) Paid, Inc.  All rights reserved.
  *
- * $Id: ShipRateParserXMLItem.inc,v 1.10 2015/03/24 15:36:21 dsherman Exp $
+ * $Id: ShipRateParserXMLItem.inc,v 1.11 2015/03/25 15:34:19 dsherman Exp $
  *
  * This program is part of the Paid Shipping Rate API toolkit for PHP and is responsible for parsing certain XML
  * elements that are returned by the rate engine.
