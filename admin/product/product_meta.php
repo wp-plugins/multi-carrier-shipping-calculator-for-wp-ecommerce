@@ -427,10 +427,12 @@ function wpec_auctioninc_save_meta_box_data($post_id) {
         $supp_handling_fee = sanitize_text_field($_POST['auctioninc_supp_handling_fee']);
         update_post_meta($post_id, 'auctioninc_supp_handling_fee', $supp_handling_fee);
 
-        $ondemand_codes = array_map('sanitize_text_field', $_POST['auctioninc_ondemand_codes']);
+        $ondemand_codes_dirty = $_POST['auctioninc_ondemand_codes'];
+        $ondemand_codes = is_array($ondemand_codes_dirty) ? array_map('sanitize_text_field', $ondemand_codes_dirty) : sanitize_text_field($ondemand_codes_dirty);
         update_post_meta($post_id, 'auctioninc_ondemand_codes', $ondemand_codes);
 
-        $access_fees = array_map('sanitize_text_field', $_POST['auctioninc_access_fees']);
+        $access_fees_dirty = $_POST['auctioninc_access_fees'];
+        $access_fees = is_array($access_fees_dirty) ? array_map('sanitize_text_field', $access_fees_dirty) : sanitize_text_field($access_fees_dirty);
         update_post_meta($post_id, 'auctioninc_access_fees', $access_fees);
     }
 }

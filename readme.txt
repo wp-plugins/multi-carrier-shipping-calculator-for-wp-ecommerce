@@ -3,7 +3,7 @@
 Contributors: AuctionInc,45press
 Tags: shipping,shipping rates,shipping calculator,shipping estimate,estimator,carriers,USPS,FEDEX,UPS,DHL,wp-ecommerce,wp-ecommerce shipping,wpe shipping,advanced shipping,multiple origins,drop-shipping
 Requires at least: 3.0
-Tested up to: 4.2.2
+Tested up to: 4.3
 Stable tag: 1.1
 License: GNU General Public License v3.0
 
